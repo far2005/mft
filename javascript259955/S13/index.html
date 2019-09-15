@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script>
+        $(document).ready(function () {
+            $(document).scroll(function () {
+                var topOfset = $(document).scrollTop();
+                if (topOfset >= 225) {
+                    setTimeout(function () {
+                        $('#mainNavBar').addClass("fix-top");
+                    },100);
+
+
+                } else {
+                    $('#mainNavBar').removeClass("fix-top");
+                }
+                console.log(topOfset);
+            });
+
+            $('#startCounter').click(function () {
+                /*
+                                var second = 0;
+                              var minute = 0;
+                /*
+                                setInterval(function () {
+                                    $('#counterArea').html(minute + ":" + second);
+                                    if (second >= 59) {
+                                        second = 0;
+                                        minute++;
+                                    }
+                                    second++;
+                                }, 200);
+                */
+
+
+                var second = $('#second').val();
+
+                if (second >= 0 && second <= 59) {
+                    var minute = $('#minute').val();
+                    var c = setInterval(function () {
+                        second--;
+                       // $('#counterArea').html(minute + ":" + second);
+
+                        $('#second').val(second);
+                        $('#minute').val(minute);
+
+
+                        if (second <= 0) {
+                            second = 59;
+                            minute--;
+                        }
+                        if (second <= 0 && minute <= 0) {
+                            clearInterval(c);
+                        }
+                    }, 50);
+
+                }else {
+                    alert("Error...")
+                }
+
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<img src="assets/img/logo.png" height="220" width="220"/>
+<nav class="navbar" id="mainNavBar">
+
+    <ul>
+        <li><a href="#">A</a></li>
+        <li><a href="#">B</a></li>
+        <li><a href="#">C</a></li>
+        <li><a href="#">D</a></li>
+        <li><a href="#">E</a></li>
+    </ul>
+
+
+</nav>
+
+<div class="box" id="counterArea">
+
+
+</div>
+
+<div class="box min">
+
+    <input type="number" id="minute">
+    <input type="number" id="second">
+
+
+    <button type="button" id="startCounter"> Start</button>
+
+
+</div>
+
+<div class="dummyHeight"></div>
+
+
+</body>
+</html>
